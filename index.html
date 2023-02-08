@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #game {
+        text-align: center;
+        padding: 20px;
+      }
+      
+      button {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+      <p id="playerChoice"></p>
+      <p id="computerChoice"></p>
+      <p id="result"></p>
+    </div>
+    
+    <script>
+      const choices = ['rock', 'paper', 'scissors'];
+      
+      const playerChoice = document.getElementById("playerChoice");
+      const computerChoice = document.getElementById("computerChoice");
+      const result = document.getElementById("result");
+      
+      const buttons = document.querySelectorAll("button");
+      
+      buttons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const playerSelection = e.target.id;
+          const computerSelection = choices[Math.floor(Math.random() * 3)];
+          
+          playerChoice.textContent = `Player: ${playerSelection}`;
+          computerChoice.textContent = `Computer: ${computerSelection}`;
+          
+          if (playerSelection === computerSelection) {
+            result.textContent = "It's a tie!";
+          } else if (
+            (playerSelection === 'rock' && computerSelection === 'scissors') ||
+            (playerSelection === 'paper' && computerSelection === 'rock') ||
+            (playerSelection === 'scissors' && computerSelection === 'paper')
+          ) {
+            result.textContent = "You win!";
+          } else {
+            result.textContent = "You lose.";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
